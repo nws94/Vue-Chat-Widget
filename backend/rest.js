@@ -9,7 +9,7 @@ module.exports = function(app, pool) {
     mydb.excute( conn => {
       conn.query("select * from todo;", (err, ret) => {
         console.log(ret);
-        res.send(ret);
+        res.send("test");
       });
     });
   });

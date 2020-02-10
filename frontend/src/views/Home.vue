@@ -13,6 +13,10 @@ export default {
   name: 'home',
   components: {
     HelloWorld
-  }
+  },
+  created() {
+    console.log("test");
+  },
+ 
 }
 </script>

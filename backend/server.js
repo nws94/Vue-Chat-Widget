@@ -35,8 +35,8 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 rest(app, pool);
 
-const server = app.listen(3003, function() {
-  console.log("Express's start on port 3003");
+const server = app.listen(3000, function() {
+  console.log("Start Backend 3000");
 })
 
 

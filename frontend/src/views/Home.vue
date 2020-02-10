@@ -15,7 +15,7 @@ export default {
     HelloWorld
   },
   created() {
-    console.log("test");
+    
   },
  
 }

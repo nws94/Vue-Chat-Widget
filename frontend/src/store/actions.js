@@ -75,10 +75,50 @@ const actions = {
       this.$http.post("/register",registerObj).then((res) => {
         commit("registerSuccess");
         console.log(res);
+      }).catch((err) => {
+        console.log(err);
       })
       router.push({name: 'login'});
     }
+  },
+  //상대방과 대화한 대화들을 가져오는 메소드
+  async GET_CHAT({state, commit}) {
+    //자신의 닉네임과 상대방 닉네임을 backend 서버로 보내 대화를 가져와 state chats에 저장하는 mutation 실행.
+    let chats = await this.$http.get(`/chat/${state.userInfo.nickname}/${state.toNickname}`);
+    commit("GET_CHAT",chats.data);
+  },
+  //최근 대화한 유저 닉네임 및 대화한 글 리스트를 가져오는 메소드
+  async GET_RECENT_CHATLIST({state,commit}) {
+    let recentChatList = await this.$http.get(`/chat/${state.userInfo.nickname}`);
+    commit("GET_RECENT_CHATLIST",recentChatList.data);
+  },
+  //상대방과 대화했을때 대화 리스트를 state에 저장하는 메소드
+  ADD_CHAT({commit},payload) {
+    commit("ADD_CHAT", payload);
+  },
+  //최근 대화한 유저 닉네임 및 대화한 글 리스트를 state에 저장하는 메소드
+  ADD_RECENT_CHATLIST({commit},payload) {
+    commit("ADD_RECENT_CHATLIST",payload);
+  },
+  // 상대방 닉네임을 state에 저장하는 메소드
+  SET_TONICKNAME({commit}, payload) {
+    commit("SET_TONICKNAME", payload);
+  },
+  // 상대방을 찾는 메소드
+  findUser({commit,state},findObj) {
+    //자기 자신은 빼고 상대방만 찾기위하여 자신의 닉네임과 상대방 닉네임을 Backend 서버로 보냄.
+    this.$http.get(`/userfind/${findObj.data.findNickname}/${state.userInfo.nickname}`).then((res) => {
+      // data 길이가 0이라면 찾는 사용자가 없으므로 state를 변경
+      if(res.data.length === 0) {
+        commit("isFindError",{0: {nickname: "사용자를 찾을 수 없습니다."}})
+      } 
+      // 유저 리스트를 state에 저장
+      else {
+        commit("isFind",res.data)
+      }
+    })
   }
+  
 }
 
 export default actions;

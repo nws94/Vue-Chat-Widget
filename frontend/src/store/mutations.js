@@ -21,17 +21,17 @@ const mutations = {
     state.isRegister = false;
     state.isRegisterError = true;
   },
-  SET_CHAT(state,payload) {
+  GET_CHAT(state,payload) {
     state.chats = payload;
   },
   ADD_CHAT(state, payload) {
     state.chats.push(payload);
   },
-  SET_CHATLIST(state,payload) {
-    state.chatList = payload;
+  GET_RECENT_CHATLIST(state,payload) {
+    state.recentChatList = payload;
   },
-  ADD_CHATLIST(state,payload) {
-    state.chatList.push(payload);
+  ADD_RECENT_CHATLIST(state,payload) {
+    state.recentChatList.push(payload);
   },
   SET_USERLIST(state,payload) {
     state.userList = payload;
@@ -44,6 +44,14 @@ const mutations = {
   },
   SET_DETAILPERFORID(state,payload) {
     state.detailPerforID = payload;
+  },
+  isFind(state, payload) {
+    state.userList = payload;
+    state.isFind = true;
+  },
+  isFindError(state, payload) {
+    state.userList = payload;
+    state.isFind = false;
   }
 }
 

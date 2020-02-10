@@ -60,9 +60,6 @@ export default {
   computed: {
     ...mapState(["isLogin","isLoginError","params"])
   },
-  created() {
-    console.log(this.params);
-  },
   methods: {
     
     ...mapActions(["login"]),

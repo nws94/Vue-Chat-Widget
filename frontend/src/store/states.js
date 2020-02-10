@@ -13,7 +13,7 @@ const state = {
   toNickname: null,
   message: '',
   chats: null,
-  chatList: null,
+  recentChatList: null,
   userList: null,
   performanceID: null,
   detailPerforID: null,

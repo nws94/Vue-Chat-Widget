@@ -20,8 +20,8 @@
           
           <v-file-input @change="processFile($event, index)" label="upload"></v-file-input>
           <v-img max-height="350" class="mb-5" aspect-ratio="1.7" contain v-show="perfo.filetype === 'image'" :src="perfo.file"></v-img>
-          <v-flex class="text-center mb-5">
-            <video v-show="perfo.filetype === 'video'" controls :src="perfo.file"></video>
+          <v-flex  class="text-center mb-5">
+            <video class="container" v-show="perfo.filetype === 'video'" controls :src="perfo.file"></video>
           </v-flex>
           
           <vue-editor v-model="perfo.content"></vue-editor>

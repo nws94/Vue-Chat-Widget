@@ -24,7 +24,7 @@
             md="7"
             v-for="(item,index) of performance"
             :key="index">
-          <video v-show="item.filetype==='video'" controls :src="item.file"></video>
+          <video class="container" v-show="item.filetype==='video'" controls :src="item.file"></video>
           <v-img v-show="item.filetype==='image'" :src="item.file"></v-img>
           <div v-html="item.content">
           </div>

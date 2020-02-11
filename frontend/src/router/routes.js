@@ -14,25 +14,22 @@ const routes = [
   path: "/performance",
   name: "performance",
   component: () => import("../components/Performance/Performance.vue"),
-  children: [
-    {
-      path: "write",
-      name: "performance-write",
-      component: () => import("../components/Performance/Performance-Write.vue"),
-      beforeEnter (to, from, next) {
-        store.dispatch("GET_PERFORMANCEID");
-        next();
-      }
-    },{
-      path: "detail",
-      name: "performance-detail",
-      component: () => import("../components/Performance/Performance-Detail.vue"),
-    },{
-      path: "edit",
-      name: "performance-edit",
-      component: () => import("../components/Performance/Performance-Edit.vue"),
-    }
-  ]
+}, {
+  path: "/performance/write",
+  name: "performance-write",
+  component: () => import("../components/Performance/Performance-Write.vue"),
+  beforeEnter (to, from, next) {
+    store.dispatch("GET_PERFORMANCEID");
+    next();
+  }
+},{
+  path: "/performance/detail",
+  name: "performance-detail",
+  component: () => import("../components/Performance/Performance-Detail.vue"),
+},{
+  path: "/performance/edit",
+  name: "performance-edit",
+  component: () => import("../components/Performance/Performance-Edit.vue"),
 }
 ]
 

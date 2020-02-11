@@ -2,24 +2,7 @@ const Mydb = require('./mydb');
 
 module.exports = function(app, pool) {
   
-  app.get('/test', (req, res)  => {
-    let login = req.body.data;
-    console.log("rest",req.body);
-    let mydb = new Mydb(pool);
-    mydb.excute( conn => {
-      conn.query("select * from todo;", (err, ret) => {
-        console.log(ret);
-        res.send("test");
-      });
-    });
-  });
-
-  app.post('/test',(req,res) => {
-    let body = req.body;
-    console.log(req.body.data.userID);
-  })
-  
-
+  // 회원가입
   app.post('/register', (req,res) => {
     let register = req.body.data;
     // console.log("register", req.body,"req.body.data",req.body.data);
@@ -37,6 +20,7 @@ module.exports = function(app, pool) {
       })
     })
   })
+  // auth 가입
   app.post('/register/auth',(req,res) =>  {
       let register = req.body.data;
       let mydb = new Mydb(pool);
@@ -60,7 +44,7 @@ module.exports = function(app, pool) {
         })
       })
   })
-
+  // 로그인
   app.post('/login', (req,res) => {
     let login = req.body.data;
     // console.log("rest",req.body);
@@ -74,6 +58,7 @@ module.exports = function(app, pool) {
       })
     })
   })
+  // auth 로그인
   app.post('/login/auth',(req,res) => {
     let login = req.body.data;
     let mydb = new Mydb(pool);
@@ -85,6 +70,7 @@ module.exports = function(app, pool) {
       })
     })
   })
+  // 유저 찾기
   app.get('/userfind/:findNickname/:myNickname', (req,res) => {
     let findNickname = req.params.findNickname,
         myNickname = req.params.myNickname;
@@ -97,6 +83,8 @@ module.exports = function(app, pool) {
     })
     
   })
+
+  // 채팅 insert
   app.post('/chat', (req,res) => {
     let chat = req.body.data;
     // console.log("chat", req.body,"req.body.data",req.body.data);
@@ -114,7 +102,7 @@ module.exports = function(app, pool) {
       })
     })
   })
-
+  // 상대방과 채팅한 리스트
   app.get('/chat/:fromNickname/:toNickname', (req,res) => {
     let fromNickname = req.params.fromNickname,
       toNickname = req.params.toNickname
@@ -127,6 +115,7 @@ module.exports = function(app, pool) {
     })
     
   })
+  // 최근 채팅한 리스트 목록
   app.get('/chat/:myNickname',(req,res) => {
     let myNickname = req.params.myNickname;
     let test = '';
@@ -158,7 +147,7 @@ module.exports = function(app, pool) {
           })
       })
   })
-
+  // 모든 안읽은 메세지 개수
   app.get("/allUnread/:myNickname",(req,res) =>{
     let myNickname = req.params.myNickname;
 
@@ -171,6 +160,7 @@ module.exports = function(app, pool) {
       })
     })
   })
+  // 상대 유저별 안 읽은 메세지 개수
   app.get("/unread/:myNickname/:toNickname", (req,res) => {
     let myNicknmae = req.params.myNickname,
         toNickname = req.params.toNickname; 

@@ -1,7 +1,7 @@
 const Mydb = require('./mydb');
 
 module.exports = function(app, pool) {
-
+  //실적 DB 저장
   app.post("/performance/write",(req, res) => {
     let form = req.body,
         file = '';
@@ -23,7 +23,7 @@ module.exports = function(app, pool) {
       });
     })
   })
-
+  // 추가 내용 및 파일 DB저장
   app.post("/performance/addfile",(req,res) => {
     let form = req.body;
     
@@ -44,7 +44,7 @@ module.exports = function(app, pool) {
     })
 
   })
-
+  // 가장 큰 id를 보냄
   app.get("/performance/id", (req,res) => {
     let mydb = new Mydb(pool);
     mydb.excute( conn => {
@@ -54,7 +54,7 @@ module.exports = function(app, pool) {
       })
     })
   })
-
+  // 실적 리스트를 보냄
   app.get("/performance", (req,res) => {
     let mydb = new Mydb(pool);
     mydb.excute( conn => {
@@ -64,6 +64,7 @@ module.exports = function(app, pool) {
       })
     })
   })
+  // id와 같은 실적을 보냄
   app.get("/performance/:id", (req,res) => {
     let id = req.params.id;
     let mydb = new Mydb(pool);
@@ -74,7 +75,7 @@ module.exports = function(app, pool) {
       })
     })
   })
-
+  // id 같은 추가 내용 을 보냄
   app.get("/performance/addfile/:id",(req,res) => {
     let id = req.params.id;
     let mydb = new Mydb(pool);
@@ -85,7 +86,7 @@ module.exports = function(app, pool) {
       })
     })
   })
-
+  // 실적 수정
   app.post("/performance/update",(req,res) => {
     let form = req.body;
 
@@ -103,7 +104,7 @@ module.exports = function(app, pool) {
         })
     })
   })
-
+  // 추가 내용 수정
   app.post("/performance/addfile/update",(req,res) => {
     let form = req.body;
 
@@ -121,7 +122,7 @@ module.exports = function(app, pool) {
         })
     })
   })
-
+  // 추가 내용 삭제
   app.delete("/performance/addfile/:addID",(req,res) => {
     let addID = req.params.addID;
 

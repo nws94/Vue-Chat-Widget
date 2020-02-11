@@ -10,8 +10,7 @@ const bodyParser = require('body-parser'),
       performance = require('./performance');
  
 
-// let mydb = new Mydb(pool);
-// const Mydb = require('./mydb');
+// CORS
 app.all('*', (req, res, next) => {
   res.header("Access-Control-Allow-Origin","*");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -33,13 +32,17 @@ app.options('*', cors(corsOpt));
 app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
+// 유저정보, 채팅DB
 rest(app, pool);
 
+// port 번호 설정
 const server = app.listen(3000, function() {
   console.log("Start Backend 3000");
 })
 
-
+// 소켓
 io(server,pool);
+// 메일
 mail(app,pool);
+// 실적
 performance(app,pool);

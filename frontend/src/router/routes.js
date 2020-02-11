@@ -1,6 +1,4 @@
-
-
-
+import store from '../store'
 
 const routes = [
   {
@@ -12,6 +10,29 @@ const routes = [
   path: '/register',
   name: 'register',
   component: () => import("../components/Register/Register.vue")
+},{
+  path: "/performance",
+  name: "performance",
+  component: () => import("../components/Performance/Performance.vue"),
+  children: [
+    {
+      path: "write",
+      name: "performance-write",
+      component: () => import("../components/Performance/Performance-Write.vue"),
+      beforeEnter (to, from, next) {
+        store.dispatch("GET_PERFORMANCEID");
+        next();
+      }
+    },{
+      path: "detail",
+      name: "performance-detail",
+      component: () => import("../components/Performance/Performance-Detail.vue"),
+    },{
+      path: "edit",
+      name: "performance-edit",
+      component: () => import("../components/Performance/Performance-Edit.vue"),
+    }
+  ]
 }
 ]
 

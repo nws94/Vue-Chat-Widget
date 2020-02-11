@@ -117,6 +117,22 @@ const actions = {
         commit("isFind",res.data)
       }
     })
+  },
+  //실적 리스트 id를 가져오는 메소드
+  GET_PERFORMANCEID({commit}) {
+    this.$http.get("/performance/id").then((res) => {
+      let id = res.data[0].id;
+      if(res.data[0].id === null){
+        id = 0;
+      }
+      commit("GET_PERFORMANCEID",id+1);
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
+  //실적 리스트에 상세 페이지 데이터를 가져오는 메소드
+  SET_DETAILPERFORID({commit},payload) {
+    commit("SET_DETAILPERFORID",payload)
   }
   
 }

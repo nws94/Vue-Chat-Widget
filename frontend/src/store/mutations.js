@@ -39,7 +39,7 @@ const mutations = {
   SET_TONICKNAME(state, payload) {
     state.toNickname = payload;
   },
-  SET_PERFORMANCEID(state, payload) {
+  GET_PERFORMANCEID(state, payload) {
     state.performanceID  = payload;
   },
   SET_DETAILPERFORID(state,payload) {

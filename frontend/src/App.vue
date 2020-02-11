@@ -6,7 +6,14 @@
     >
       <v-list dense>
         
-        
+        <v-list-item router :to="{name: 'performance'}">
+          <v-list-item-icon>
+            <v-icon>mdi-alpha-p-circle-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title >실적</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
          <v-list-item router :to="{name: 'login'}" v-if="isLogin" @click="$store.dispatch('logout')">
           <v-list-item-icon>

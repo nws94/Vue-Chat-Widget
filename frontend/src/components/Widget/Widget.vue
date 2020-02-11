@@ -6,10 +6,7 @@
           offset-y  
     >
       <template v-slot:activator="{ on }">
-         <!-- <v-badge
-          color="green accent-4"
-          content="0"
-          right  class="mr-7"> -->
+
         <v-btn
           color="indigo"
           fab
@@ -23,8 +20,8 @@
       </template>
 
       <v-card  
-          max-width="320"
-          width='320'
+          max-width="300"
+          width='300'
           height='500'
           max-height="500"
           

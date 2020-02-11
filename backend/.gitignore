@@ -1,1 +1,4 @@
 config.json
+
+../test/testmail.js
+oauth.js

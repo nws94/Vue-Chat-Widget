@@ -13,7 +13,8 @@ const actions = {
         commit("loginError")
       }else {
         // 관리자만 볼 수 있는 페이지나 버튼이 있으므로 관리자이면 admin을 true로 바꿔줌
-        if(res.data[0].nickname === "관리자") state.admin = true;
+        if(res.data[0].nickname === "admin") state.admin = true;
+        else state.admin = false;
         //  이메일과 비밀 번호가 맞으므로 mutation loginSuccess을 실행
         commit("loginSuccess",{email: loginObj.data.email, nickname: res.data[0].nickname});
 
@@ -36,7 +37,7 @@ const actions = {
     }))
   },
   // 구글로 auth 로그인시 실행되는 메소드
-  auth_login({commit,dispatch},loginObj) {
+  auth_login({commit,dispatch,state},loginObj) {
     this.$http.post("/login/auth",loginObj).then((res) => {
 
       //data 길이가 0이면 유저 정보가 DB에 없으므로 저장
@@ -51,7 +52,9 @@ const actions = {
       //이미 유저 정보가 DB에 저장 돼있으므로 바로 loginSuccess 실행
       else {
         commit("loginSuccess",{email: loginObj.data.email,nickname: res.data[0].nickname});
+        
       }
+      state.admin = false;
       //소켓 연결
       dispatch("SocketConn");
 
@@ -92,7 +95,7 @@ const actions = {
     let recentChatList = await this.$http.get(`/chat/${state.userInfo.nickname}`);
     commit("GET_RECENT_CHATLIST",recentChatList.data);
   },
-  //상대방과 대화했을때 대화 리스트를 state에 저장하는 메소드
+  //상대방에게 메세지를 보냈을때 state에 저장하는 메소드
   ADD_CHAT({commit},payload) {
     commit("ADD_CHAT", payload);
   },

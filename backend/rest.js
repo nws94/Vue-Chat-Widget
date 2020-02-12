@@ -84,7 +84,7 @@ module.exports = function(app, pool) {
     
   })
 
-  // 채팅 insert
+  // 채팅 저장
   app.post('/chat', (req,res) => {
     let chat = req.body.data;
     // console.log("chat", req.body,"req.body.data",req.body.data);

@@ -54,8 +54,9 @@ module.exports = function(server,pool) {
             
             conn.commit();
           // 상대방과 대화 했던 내용을 다시 보내기
-          conn.queryAsync("select * from chat where((fromNickname = ? and toNickname=?) or (fromNickname = ? and toNickname = ?))",[data.fromNickname,data.toNickname,data.toNickname,data.fromNickname], (err2, ret2) => {
-            if(err2) throw err2;
+          conn.queryAsync("select * from chat where((fromNickname = ? and toNickname=?) or (fromNickname = ? and toNickname = ?))",
+                        [data.fromNickname,data.toNickname,data.toNickname,data.fromNickname], (err2, ret2) => {
+              if(err2) throw err2;
            
               let messageSuccess = false;
 

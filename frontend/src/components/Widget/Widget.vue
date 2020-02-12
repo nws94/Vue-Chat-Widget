@@ -76,7 +76,7 @@
     },
      created() {
       //만약 로그인 돼었다면 실시간으로 안읽은 채팅 개수를 보여줌
-      if(this.isLogin){
+      if(this.isLogin === true){
         setInterval(() => {
 
             this.$http.get(`/allUnread/${this.userInfo.nickname}`).then((ret) =>{

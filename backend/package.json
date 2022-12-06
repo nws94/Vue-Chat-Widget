@@ -24,7 +24,7 @@
     "passport-google-oauth": "^2.0.0",
     "passport-kakao": "^1.0.0",
     "passport-kakao-token2": "^0.1.2",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "sendmail": "^1.6.1",
